@@ -4,7 +4,7 @@ pipelines:
     group: example
     materials:
       git:
-        git: https://github.com/example/application.git
+        git: https://github.com/bhavyastar/example-app-check
         branch: main
     environment_variables:
       DOCKER_REGISTRY: docker.io
