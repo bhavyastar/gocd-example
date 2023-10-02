@@ -1,0 +1,38 @@
+format_version: 9
+pipelines:
+  docker-push:
+    group: example
+    materials:
+      git:
+        git: https://github.com/example/application.git
+        branch: main
+    environment_variables:
+      DOCKER_REGISTRY: docker.io
+      DOCKER_USERNAME: <your-docker-username>
+      DOCKER_PASSWORD: <your-docker-password>
+    stages:
+      - build-push:
+        jobs:
+          docker-build-push:
+            tasks:
+              - exec:
+                command: docker
+                arguments:
+                  - build
+                  - -t
+                  - ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/application:${GO_PIPELINE_LABEL}
+                  - .
+              - exec:
+                command: docker
+                arguments:
+                  - login
+                  - -u
+                  - ${DOCKER_USERNAME}
+                  - -p
+                  - ${DOCKER_PASSWORD}
+                  - ${DOCKER_REGISTRY}
+              - exec:
+                command: docker
+                arguments:
+                  - push
+                  - ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/application:${GO_PIPELINE_LABEL}
