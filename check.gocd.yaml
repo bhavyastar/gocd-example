@@ -8,7 +8,7 @@ pipelines:
         branch: main
     environment_variables:
       DOCKER_REGISTRY: docker.io
-      DOCKER_USERNAME: <your-docker-username>
+      DOCKER_USERNAME: bhavyasachdeva
       DOCKER_PASSWORD: <your-docker-password>
     stages:
       - build-push:
