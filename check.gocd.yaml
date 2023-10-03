@@ -9,6 +9,9 @@ pipelines:
         git: https://github.com/bhavyastar/example-app-check
         branch: master
         shallow_clone: true
+    rules:
+      - allow: refer
+        pipeline_group: nodejs
     stages:
       - build:
           jobs:
