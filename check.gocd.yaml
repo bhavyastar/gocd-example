@@ -7,13 +7,12 @@ pipelines:
     materials:
       git:
         git: https://github.com/bhavyastar/example-app-check
-        branch: maain
+        branch: master
         shallow_clone: true
     stages:
       - build:
           jobs:
             build:
-              elastic_profile_id: docker-nodejs
               tasks:
                 - exec:
                     command: npm
@@ -31,7 +30,6 @@ pipelines:
       - deploy:
           jobs:
             deploy:
-              elastic_profile_id: docker-nodejs
               tasks:
                 - exec:
                     command: npm
